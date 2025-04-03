@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Visitantes - Exposición</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logos">
+                <div class="logo-escom">
+                    <img src="https://www.escom.ipn.mx/images/conocenos/escudoESCOM.png" alt="Logo ESCOM">
+                </div>
+                <div>
+                    <h1>Registro de Visitantes</h1>
+                </div>
+                <div class="logo-ipn">
+                    <img src="https://i.pinimg.com/originals/22/42/18/22421831a43187e599cf0629662935e7.png" alt="Logo IPN">
+                </div>
+                
+            </div>
+            
+            <p>Por favor complete el formulario para registrar su visita a la exposición</p>
+        </header>
+
+        <form id="registroForm">
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefono">Teléfono:</label>
+                <input type="tel" id="telefono" name="telefono">
+            </div>
+
+            <div class="form-group">
+                <label>Fecha de visita:</label>
+                <div id="fechaDisplay" class="display-info"></div>
+                <input type="hidden" id="fecha" name="fecha">
+            </div>
+            
+            <div class="form-group">
+                <label>Hora de visita:</label>
+                <div id="horaDisplay" class="display-info"></div>
+                <input type="hidden" id="hora" name="hora">
+            </div>
+
+            <div class="form-group">
+                <label for="procedencia">Procedencia:</label>
+                <select id="procedencia" name="procedencia" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="ipn">Alumno IPN</option>
+                    <option value="fam_amigo">Familiar o Amigo</option>
+                    <option value="prodesor">Profesor</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>¿Cómo se enteró de la exposición?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="medio" value="redes"> Redes sociales</label>
+                    <label><input type="radio" name="medio" value="prensa"> Prensa</label>
+                    <label><input type="radio" name="medio" value="recomendacion"> Recomendación</label>
+                    <label><input type="radio" name="medio" value="otro"> Otro</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="comentarios">Comentarios (opcional):</label>
+                <textarea id="comentarios" name="comentarios" rows="4"></textarea>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <label>
+                    <input type="checkbox" id="privacidad" name="privacidad" required>
+                    Acepto la política de privacidad y el tratamiento de mis datos
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-submit">Registrar visita</button>
+                <button type="reset" class="btn-reset">Limpiar formulario</button>
+            </div>
+        </form>
+
+        <div id="mensajeExito" class="mensaje-exito" style="display: none;">
+            <p>¡Registro exitoso! Gracias por visitar nuestra exposición.</p>
+            <button id="btnNuevoRegistro" class="btn-nuevo">Hacer otro registro</button>
+        </div>
+    </div>
+
+    <script src="formv.js"></script>
+</body>
+</html>
