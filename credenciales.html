@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generación de Credenciales - Evento ESCOM</title>
+    <link rel="stylesheet" href="credenciales.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logos">
+                <div class="logo-escom">
+                    <img src="https://www.escom.ipn.mx/images/conocenos/escudoESCOM.png" alt="Logo ESCOM">
+                </div>
+                <div class="titulo">
+                    <h1>Generador de Credenciales</h1>
+                    <h2>Acceso al Evento</h2>
+                </div>
+                <div class="logo-ipn">
+                    <img src="https://i.pinimg.com/originals/22/42/18/22421831a43187e599cf0629662935e7.png" alt="Logo IPN">
+                </div>
+            </div>
+            <p>Complete los datos para generar su credencial de acceso</p>
+        </header>
+
+        <form id="credencialForm">
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="matricula">Matrícula o ID:</label>
+                <input type="text" id="matricula" name="matricula" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo">Tipo de asistente:</label>
+                <select id="tipo" name="tipo" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="alumno">Alumno</option>
+                    <option value="profesor">Profesor</option>
+                    <option value="invitado">Invitado Especial</option>
+                    <option value="organizador">Organizador</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="evento">Evento:</label>
+                <div class="input-combinado">
+                    <select id="eventoSelect" name="eventoSelect">
+                        <option value="Exposición de Proyectos ESCOM 2024">Exposición de Proyectos ESCOM 2024</option>
+                        <option value="otro">Otro evento...</option>
+                    </select>
+                    <input type="text" id="eventoInput" name="eventoInput" placeholder="Ingrese nombre del evento" style="display: none;">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha del evento:</label>
+                <div class="input-combinado">
+                    <select id="fechaSelect" name="fechaSelect">
+                        <option value="15 de Noviembre 2024">15 de Noviembre 2024</option>
+                        <option value="otra">Otra fecha...</option>
+                    </select>
+                    <div class="fecha-inputs" style="display: none;">
+                        <input type="date" id="fechaInput" name="fechaInput">
+                        <input type="text" id="fechaTexto" name="fechaTexto" placeholder="o escriba la fecha">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="foto">Subir foto (opcional):</label>
+                <input type="file" id="foto" name="foto" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-generar">Generar Credencial</button>
+            </div>
+        </form>
+
+        <div id="credencialPreview" class="credencial-container" style="display: none;">
+            <div class="credencial" id="credencialToPrint">
+                <div class="credencial-header">
+                    <img src="https://www.escom.ipn.mx/images/conocenos/escudoESCOM.png" alt="ESCOM" class="logo-credencial">
+                    <h3>Credencial de Acceso</h3>
+                </div>
+                <div class="credencial-body">
+                    <div class="foto-container">
+                        <img id="fotoPreview" src="" alt="Foto" class="foto-perfil">
+                    </div>
+                    <div class="datos-container">
+                        <p><strong>Nombre:</strong> <span id="previewNombre"></span></p>
+                        <p><strong>ID:</strong> <span id="previewMatricula"></span></p>
+                        <p><strong>Tipo:</strong> <span id="previewTipo"></span></p>
+                        <p><strong>Evento:</strong> <span id="previewEvento"></span></p>
+                        <p><strong>Fecha:</strong> <span id="previewFecha"></span></p>
+                    </div>
+                </div>
+                <div class="credencial-footer">
+                    <div class="codigo-barras"></div>
+                    <p class="codigo-texto">ID: <span id="codigoAcceso"></span></p>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button id="btnImprimir" class="btn-imprimir">Imprimir Credencial</button>
+                <button id="btnNuevaCredencial" class="btn-nuevo">Generar Otra Credencial</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="credenciales.js"></script>
+</body>
+</html>
