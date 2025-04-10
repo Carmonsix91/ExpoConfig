@@ -1,0 +1,333 @@
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    font-size: 1.6rem;
+}
+
+img {
+    max-width: 100%;
+}
+
+h1 {
+    font-size: 4rem;
+}
+:root {
+    --ipn-guinda-oscuro: #5c0e2d;
+    --ipn-guinda: #8b1a3d;
+    --ipn-guinda-claro: #b7244f;
+    --ipn-blanco: #ffffff;
+    --ipn-negro: #000000;
+    --ipn-gris-oscuro: #333333;
+    --ipn-gris-medio: #666666;
+    --ipn-gris-claro: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--ipn-gris-claro);
+    color: var(--ipn-gris-oscuro);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 30px;
+    background: var(--ipn-blanco);
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    border-top: 5px solid var(--ipn-guinda-oscuro);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--ipn-guinda);
+}
+
+header h1 {
+    color: var(--ipn-guinda-oscuro);
+    margin-bottom: 10px;
+    font-size: 28px;
+    text-align: center;
+    margin-top: 22px;
+    text-transform: uppercase;
+}
+
+header p {
+    color: var(--ipn-gris-medio);
+    font-size: 16px;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: var(--ipn-guinda-oscuro);
+    font-size: 15px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+input[type="time"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--ipn-gris-claro);
+    border-radius: 4px;
+    font-size: 15px;
+    background-color: var(--ipn-blanco);
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
+input[type="time"]:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--ipn-guinda);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(139, 26, 61, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.radio-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ipn-gris-oscuro);
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--ipn-gris-oscuro);
+}
+
+.btn-submit,
+.btn-reset,
+.btn-nuevo {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-submit {
+    background-color: var(--ipn-guinda-oscuro);
+    color: var(--ipn-blanco);
+    margin-right: 15px;
+}
+
+.btn-submit:hover {
+    background-color: var(--ipn-guinda);
+    transform: translateY(-2px);
+}
+
+.btn-reset {
+    background-color: var(--ipn-gris-medio);
+    color: var(--ipn-blanco);
+}
+
+.btn-reset:hover {
+    background-color: var(--ipn-gris-oscuro);
+    transform: translateY(-2px);
+}
+
+.mensaje-exito {
+    text-align: center;
+    padding: 30px;
+    background-color: rgba(92, 14, 45, 0.1);
+    color: var(--ipn-guinda-oscuro);
+    border-radius: 4px;
+    margin-top: 20px;
+    border-left: 5px solid var(--ipn-guinda);
+}
+
+.mensaje-exito p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.btn-nuevo {
+    background-color: var(--ipn-guinda);
+    color: var(--ipn-blanco);
+    margin-top: 15px;
+    padding: 10px 20px;
+}
+
+.btn-nuevo:hover {
+    background-color: var(--ipn-guinda-claro);
+    transform: translateY(-2px);
+}
+
+.display-info {
+    padding: 12px;
+    background-color: var(--ipn-blanco);
+    border: 1px solid var(--ipn-gris-claro);
+    border-radius: 4px;
+    margin-bottom: 5px;
+    color: var(--ipn-gris-oscuro);
+    font-weight: bold;
+}
+.logos{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    column-gap: 2rem;
+}
+/* Estilo para el logo del IPN (opcional) */
+.logo-ipn img {
+    max-width: 50px;
+    height: auto;
+}
+.logo-escom img {
+    max-width: 90px;
+    height: auto;
+}
+/* Estilos para la carga de archivos */
+.file-upload {
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.file-upload input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.file-label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.file-button {
+    padding: 10px 15px;
+    background-color: var(--escom-azul);
+    color: white;
+    border-radius: 4px;
+    margin-right: 10px;
+    transition: all 0.3s;
+}
+
+.file-button:hover {
+    background-color: #0069b5;
+}
+
+.file-name {
+    color: var(--ipn-gris-medio);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 60%;
+}
+
+.file-hint {
+    color: var(--ipn-gris-medio);
+    font-size: 13px;
+    display: block;
+    margin-top: 5px;
+}
+
+/* Estilos para vista previa (opcional) */
+.preview-container {
+    margin-top: 15px;
+    display: none;
+}
+
+.preview-title {
+    font-weight: 600;
+    color: var(--ipn-guinda-oscuro);
+    margin-bottom: 5px;
+}
+
+.preview-content {
+    border: 1px dashed var(--ipn-gris-claro);
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.preview-image {
+    max-width: 100%;
+    max-height: 200px;
+    margin-bottom: 10px;
+}
+
+.preview-pdf {
+    color: var(--escom-azul);
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin: 15px;
+        padding: 20px;
+    }
+    
+    header h1 {
+        font-size: 24px;
+    }
+    
+    .btn-submit,
+    .btn-reset {
+        width: 100%;
+        margin-bottom: 10px;
+        margin-right: 0;
+    }
+    
+    .radio-group {
+        flex-direction: column;
+    }
+}
