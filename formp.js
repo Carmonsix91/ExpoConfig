@@ -60,6 +60,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Función para generar ID de proyecto
+    function generarIdProyecto() {
+        const prefix = 'ESCOM-P-';
+        const fecha = new Date();
+        const year = fecha.getFullYear().toString().slice(-2);
+        const month = (fecha.getMonth() + 1).toString().padStart(2, '0');
+        const randomNum = Math.floor(1000 + Math.random() * 9000);
+        
+        return `${prefix}${year}${month}-${randomNum}`;
+    }
     
     form.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -77,20 +87,26 @@ document.addEventListener('DOMContentLoaded', function() {
         
         
         // Mostrar resumen del proyecto
+        const proyectoId = generarIdProyecto();
         const formData = new FormData(form);
-        const proyecto = {};
+        const proyecto = {
+            id: proyectoId,
+            fechaRegistro: new Date().toISOString()
+        };
         formData.forEach((value, key) => {
             proyecto[key] = value;
         });
 
-        
+        document.getElementById('proyectoId').textContent = proyectoId;
         
         resumenProyecto.innerHTML = `
             <strong>Proyecto:</strong> ${proyecto.nombreProyecto}<br>
             <strong>Responsable:</strong> ${proyecto.responsable}<br>
             <strong>Materia Relacionada:</strong> ${proyecto.materia}<br>
             <strong>Correo:</strong> ${proyecto.correo}<br>
-            <strong>Profesor responsable:</strong> ${proyecto.profesor}
+            <strong>Profesor responsable:</strong> ${proyecto.profesor}<br>
+            <strong>Documento:</strong> ${proyecto.documento ? proyecto.documento.name : 'Ninguno'}
+
         `;
         
         // Mostrar mensaje de éxito
@@ -100,6 +116,8 @@ document.addEventListener('DOMContentLoaded', function() {
         // Aquí iría el código para enviar los datos al servidor
         console.log('Datos del proyecto:', proyecto);
         console.log('Archivo seleccionado:', fileInput.files[0]);
+        const proyectosRegistrados = JSON.parse(localStorage.getItem('proyectosESCOM') || '[]');        proyectosRegistrados.push(proyecto);
+        localStorage.setItem('proyectosESCOM', JSON.stringify(proyectosRegistrados));
     });
     
     btnNuevoProyecto.addEventListener('click', function() {

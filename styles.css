@@ -309,6 +309,27 @@ textarea {
     color: var(--escom-azul);
     font-weight: bold;
 }
+/* Estilos para el ID del proyecto */
+.id-proyecto {
+    background-color: var(--ipn-guinda-oscuro);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: monospace;
+    letter-spacing: 1px;
+}
+
+.resumen-container {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 6px;
+    margin: 15px 0;
+    border-left: 3px solid var(--escom-azul);
+}
+
+.resumen-container p {
+    margin-bottom: 10px;
+}
 
 @media (max-width: 768px) {
     .container {
