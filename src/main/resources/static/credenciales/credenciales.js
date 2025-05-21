@@ -194,63 +194,85 @@ document.addEventListener('DOMContentLoaded', function() {
     // Procesar el formulario
     credencialForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Obtener valores del formulario
+
+    // Obtener valores del formulario
         const nombre = document.getElementById('nombre').value;
         const matricula = document.getElementById('matricula').value;
         const tipo = document.getElementById('tipo').value;
         const evento = getEventoSeleccionado();
         const fecha = getFechaSeleccionada();
-        
-        // Validar que se haya seleccionado un tipo
+
+        // Validaciones básicas
         if (!tipo) {
             alert('Por favor seleccione un tipo de asistente');
             return;
         }
-        
-        // Validar evento
         if (!evento) {
             alert('Por favor ingrese un nombre para el evento');
             return;
         }
-        
-        // Validar fecha
         if (!fecha) {
             alert('Por favor ingrese una fecha para el evento');
             return;
         }
-        
-        // Actualizar historiales si es necesario
+
+        // Actualizar historiales
         if (!historialEventos.includes(evento)) {
             historialEventos.unshift(evento);
             updateEventoSelect();
         }
-        
         if (!historialFechas.includes(fecha)) {
             historialFechas.unshift(fecha);
             updateFechaSelect();
         }
-        
+
         // Mostrar datos en la vista previa
         document.getElementById('previewNombre').textContent = nombre;
         document.getElementById('previewMatricula').textContent = matricula;
         document.getElementById('previewTipo').textContent = tipoMap[tipo] || tipo;
         document.getElementById('previewEvento').textContent = evento;
         document.getElementById('previewFecha').textContent = fecha;
-        
-        // Generar y mostrar código de acceso
+
+        // Generar código de acceso
         const codigoAcceso = generarCodigoAcceso();
         document.getElementById('codigoAcceso').textContent = codigoAcceso;
-        
-        // Mostrar foto por defecto si no se subió ninguna
+
+        // Foto por defecto
         if (!fotoInput.files[0]) {
             fotoPreview.src = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
         }
-        
-        // Mostrar la vista previa y ocultar el formulario
+
+        // Enviar al backend con fetch
+        fetch('/api/credenciales', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre: nombre,
+                matricula: matricula,
+                tipo: tipo,
+                evento: evento,
+                fecha: fecha,
+                codigoAcceso: codigoAcceso
+            })
+        })
+        .then(response => {
+            if (!response.ok) throw new Error("No se pudo guardar la credencial");
+            return response.json();
+        })
+        .then(data => {
+            console.log("Credencial guardada exitosamente:", data);
+        })
+        .catch(error => {
+            console.error("Error al guardar la credencial:", error);
+        });
+
+        // Mostrar la vista previa
         credencialForm.style.display = 'none';
         credencialPreview.style.display = 'block';
     });
+
     
     // Botón para imprimir la credencial
     btnImprimir.addEventListener('click', function() {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Organización de Eventos - ESCOM IPN</title>
+    <title>Expo ESCOM - Inicio</title>
     <link rel="stylesheet" href="index.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -11,16 +11,15 @@
     <header class="header">
         <div class="header-logos">
             <img src="https://www.escom.ipn.mx/images/conocenos/escudoESCOM.png" alt="Logo ESCOM" class="logo-escom">
-            <h1>Organización de Eventos ESCOM</h1>
+            <h1>Expo ESCOM</h1>
             <img src="https://i.pinimg.com/originals/22/42/18/22421831a43187e599cf0629662935e7.png" alt="Logo IPN" class="logo-ipn">
         </div>
         <nav class="nav-menu">
             <ul>
                 <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#modulos">Módulos</a></li>
                 <li><a href="#eventos">Eventos</a></li>
-                <li><a href="#registro">Registro</a></li>
                 <li><a href="#contacto">Contacto</a></li>
-                <li><a href="../formlariovisit/formulariovisitantes.html">Formulario de Visita</a></li>
             </ul>
         </nav>
     </header>
@@ -29,86 +28,39 @@
         <section id="inicio" class="hero">
             <div class="hero-content">
                 <h2>Bienvenidos a la Plataforma de Eventos ESCOM</h2>
-                <p>Organizamos los mejores eventos académicos y culturales para la comunidad politécnica</p>
-                <a href="#registro" class="btn-primary">Registrar Evento</a>
+                <p>Consulta, registra y participa en los eventos de la Exposición de Proyectos ESCOM-IPN</p>
+            </div>
+        </section>
+
+        <section id="modulos" class="modules-section">
+            <h2>Módulos del Sistema</h2>
+            <div class="modules-grid">
+                <a href="../registroproyect/formprt.html" class="module-card">Registrar Proyecto</a>
+                <a href="../alumno/alumno.html" class="module-card">Alumno</a>
+                <a href="../profesor/profesor.html" class="module-card">Profesor</a>
+                <a href="../credenciales/credenciales.html" class="module-card">Generar Credencial</a>
+                <a href="../formlariovisit/formulariovisitantes.html" class="module-card">Registro de Visita</a>
+                <a href="../login/login.html" class="module-card">Iniciar Sesión</a>
             </div>
         </section>
 
         <section id="eventos" class="events-section">
-            <h2>Próximos Eventos</h2>
+            <h2>Eventos Destacados</h2>
             <div class="events-grid" id="eventsContainer">
-                <!-- Eventos se cargarán dinámicamente -->
+                <!-- Eventos se cargarán vía JS si se desea -->
             </div>
-        </section>
-
-        <section id="registro" class="registration-section">
-            <h2>Registro de Eventos</h2>
-            <form id="eventForm" class="event-form">
-                <div class="form-group">
-                    <label for="eventName">Nombre del Evento:</label>
-                    <input type="text" id="eventName" name="eventName" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="eventType">Tipo de Evento:</label>
-                    <select id="eventType" name="eventType" required>
-                        <option value="">Seleccione...</option>
-                        <option value="academico">Académico</option>
-                        <option value="cultural">Cultural</option>
-                        <option value="deportivo">Deportivo</option>
-                        <option value="otro">Otro</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="eventDate">Fecha del Evento:</label>
-                    <input type="date" id="eventDate" name="eventDate" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="eventTime">Hora del Evento:</label>
-                    <input type="time" id="eventTime" name="eventTime" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="eventDescription">Descripción:</label>
-                    <textarea id="eventDescription" name="eventDescription" rows="4" required></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label for="organizer">Organizador:</label>
-                    <input type="text" id="organizer" name="organizer" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="contactEmail">Email de contacto:</label>
-                    <input type="email" id="contactEmail" name="contactEmail" required>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn-submit">Registrar Evento</button>
-                    <button type="reset" class="btn-reset">Limpiar Formulario</button>
-                </div>
-            </form>
         </section>
 
         <section id="contacto" class="contact-section">
             <h2>Contacto</h2>
-            <div class="contact-info">
-                <p><strong>ESCOM - IPN</strong></p>
-                <p>Av. Juan de Dios Bátiz s/n, Nueva Industrial Vallejo</p>
-                <p>Ciudad de México, 07738</p>
-                <p>Teléfono: 55 5729 6000 Ext. 46000</p>
-                <p>Email: eventos@escom.ipn.mx</p>
-            </div>
+            <p>Para soporte o dudas, escribe a: <a href="mailto:expoescom@ipn.mx">expoescom@ipn.mx</a></p>
         </section>
     </main>
 
     <footer class="footer">
-        <p>© 2025  sharkpunks - Todos los derechos reservados</p>
-        <p>Plataforma de Organización de Eventos</p>
+        <p>&copy; 2025 ESCOM IPN - Exposición de Proyectos</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>

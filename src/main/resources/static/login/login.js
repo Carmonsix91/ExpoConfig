@@ -1,159 +1,146 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Elementos del DOM
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
-    const photoInput = document.getElementById('register-photo');
-    const photoPreview = document.getElementById('photo-preview');
-    const previewContainer = document.querySelector('.preview-container');
-    const passwordInput = document.getElementById('register-password');
-    const confirmInput = document.getElementById('register-confirm');
-    const passwordError = document.getElementById('password-error');
-    const strengthMeter = document.querySelector('.strength-meter');
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const tipoRadios = document.querySelectorAll('input[name="user-type"]');
+  const extraFields = document.getElementById('alumno-extra-fields');
+  const passwordInput = document.getElementById('register-password');
+  const confirmInput = document.getElementById('register-confirm');
+  const passwordError = document.getElementById('password-error');
+  const strengthMeter = document.querySelector('.strength-meter');
+  const photoInput = document.getElementById('register-photo');
+  const photoPreview = document.getElementById('photo-preview');
+  const fileName = document.querySelector('.file-name');
 
-    // Mostrar vista previa de la foto seleccionada
-    photoInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        
-        if (file) {
-            // Validar tamaño del archivo (máx 2MB)
-            if (file.size > 2 * 1024 * 1024) {
-                alert('El archivo es demasiado grande. Máximo 2MB permitidos.');
-                this.value = '';
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                photoPreview.src = e.target.result;
-                photoPreview.style.display = 'block';
-                previewContainer.style.display = 'block';
-            }
-            reader.readAsDataURL(file);
-            
-            // Mostrar nombre del archivo
-            document.querySelector('.file-name').textContent = file.name;
-        } else {
-            photoPreview.src = '';
-            photoPreview.style.display = 'none';
-            previewContainer.style.display = 'none';
-            document.querySelector('.file-name').textContent = 'Ningún archivo seleccionado';
-        }
+  tipoRadios.forEach(radio => {
+    radio.addEventListener('change', function () {
+      if (this.value === 'alumno') {
+        extraFields.style.display = 'block';
+        document.getElementById('register-carrera').required = true;
+        document.getElementById('register-grupo').required = true;
+        document.getElementById('register-semestre').required = true;
+      } else {
+        extraFields.style.display = 'none';
+        document.getElementById('register-carrera').required = false;
+        document.getElementById('register-grupo').required = false;
+        document.getElementById('register-semestre').required = false;
+      }
     });
+  });
 
-    // Validar fortaleza de la contraseña
-    passwordInput.addEventListener('input', function() {
-        const password = this.value;
-        let strength = 0;
+  photoInput.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (file) {
+      fileName.textContent = file.name;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        photoPreview.src = e.target.result;
+        photoPreview.style.display = 'block';
+        document.querySelector('.preview-container').style.display = 'block';
+      }
+      reader.readAsDataURL(file);
+    } else {
+      photoPreview.src = '';
+      photoPreview.style.display = 'none';
+      document.querySelector('.preview-container').style.display = 'none';
+      fileName.textContent = 'Ningún archivo seleccionado';
+    }
+  });
 
-        // Longitud mínima
-        if (password.length >= 8) strength += 20;
-        
-        // Contiene números
-        if (/\d/.test(password)) strength += 20;
-        
-        // Contiene letras mayúsculas
-        if (/[A-Z]/.test(password)) strength += 20;
-        
-        // Contiene caracteres especiales
-        if (/[^A-Za-z0-9]/.test(password)) strength += 20;
-        
-        // Longitud adicional
-        if (password.length >= 12) strength += 20;
+  passwordInput.addEventListener('input', function() {
+    const password = this.value;
+    let strength = 0;
+    if (password.length >= 8) strength += 20;
+    if (/\d/.test(password)) strength += 20;
+    if (/[A-Z]/.test(password)) strength += 20;
+    if (/[^A-Za-z0-9]/.test(password)) strength += 20;
+    if (password.length >= 12) strength += 20;
+    strengthMeter.style.width = `${strength}%`;
+    strengthMeter.style.backgroundColor = strength < 40 ? '#d32f2f' : strength < 70 ? '#ffa000' : '#388e3c';
+  });
 
-        // Actualizar medidor visual
-        strengthMeter.style.width = `${strength}%`;
-        
-        // Cambiar color según fortaleza
-        if (strength < 40) {
-            strengthMeter.style.backgroundColor = '#d32f2f'; // Rojo
-        } else if (strength < 70) {
-            strengthMeter.style.backgroundColor = '#ffa000'; // Amarillo
-        } else {
-            strengthMeter.style.backgroundColor = '#388e3c'; // Verde
-        }
+  confirmInput.addEventListener('input', function() {
+    passwordError.style.display = passwordInput.value !== this.value ? 'block' : 'none';
+    this.classList.toggle('input-error', passwordInput.value !== this.value);
+  });
+
+  loginForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    fetch('http://localhost:8080/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, password })
+    })
+    .then(response => {
+      if (!response.ok) throw new Error("Credenciales incorrectas");
+      return response.json();
+    })
+    .then(data => {
+      localStorage.setItem('usuario', JSON.stringify(data));
+      const tipo = data.tipo?.toLowerCase();
+      if (tipo === 'alumno') {
+        window.location.href = "/alumno/alumno.html";
+      } else if (tipo === 'profesor') {
+        window.location.href = "/profesor/profesor.html";
+      } else {
+        window.location.href = "/index/index.html";
+      }
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Error al iniciar sesión');
     });
+  });
 
-    // Validar coincidencia de contraseñas
-    confirmInput.addEventListener('input', function() {
-        if (passwordInput.value !== this.value) {
-            passwordError.style.display = 'block';
-            confirmInput.classList.add('input-error');
-        } else {
-            passwordError.style.display = 'none';
-            confirmInput.classList.remove('input-error');
-        }
-    });
+  registerForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const password = passwordInput.value;
+    const confirm = confirmInput.value;
+    const terms = document.querySelector('input[name="terms"]:checked');
 
-    // Manejar envío del formulario de login
-    loginForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
-        
-        // Validación básica
-        if (!email || !password) {
-            alert('Por favor completa todos los campos');
-            return;
-        }
-        
-        // Aquí iría la llamada real al servidor para autenticación
-        console.log('Intentando login con:', { email, password });
-        alert('Inicio de sesión exitoso (simulado)');
-        
-        // Redirección después de login exitoso
-        // window.location.href = 'dashboard.html';
-    });
+    if (password !== confirm || !terms) {
+      alert('Verifica contraseñas y acepta los términos.');
+      return;
+    }
 
-    // Manejar envío del formulario de registro
-    registerForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const password = passwordInput.value;
-        const confirm = confirmInput.value;
-        const terms = document.querySelector('input[name="terms"]:checked');
-        
-        // Validar contraseña
-        if (password !== confirm) {
-            alert('Las contraseñas no coinciden');
-            return;
-        }
-        
-        if (password.length < 8) {
-            alert('La contraseña debe tener al menos 8 caracteres');
-            return;
-        }
-        
-        if (!terms) {
-            alert('Debes aceptar los términos y condiciones');
-            return;
-        }
-        
-        // Obtener datos del formulario
-        const formData = {
-            userType: document.querySelector('input[name="user-type"]:checked').value,
-            name: document.getElementById('register-name').value,
-            email: document.getElementById('register-email').value,
-            id: document.getElementById('register-id').value,
-            password: password,
-            photo: photoInput.files[0] ? photoInput.files[0].name : null
-        };
-        
-        // Aquí iría la llamada real al servidor para registro
-        console.log('Datos de registro:', formData);
-        alert('Registro exitoso (simulado)');
-        
-        // Limpiar formulario después de registro exitoso
-        registerForm.reset();
-        photoPreview.src = '';
-        photoPreview.style.display = 'none';
-        previewContainer.style.display = 'none';
-        document.querySelector('.file-name').textContent = 'Ningún archivo seleccionado';
-        strengthMeter.style.width = '0';
-    });
+    const tipo = document.querySelector('input[name="user-type"]:checked').value;
+    const formData = {
+      userType: tipo,
+      name: document.getElementById('register-name').value,
+      email: document.getElementById('register-email').value,
+      id: document.getElementById('register-id').value,
+      password: password
+    };
 
-    // Manejar botón de limpiar en login
-    document.querySelector('#loginForm .btn-reset').addEventListener('click', function() {
-        loginForm.reset();
+    if (tipo === 'alumno') {
+      formData.carrera = document.getElementById('register-carrera').value;
+      formData.grupo = document.getElementById('register-grupo').value;
+      formData.semestre = document.getElementById('register-semestre').value;
+    }
+
+    fetch('http://localhost:8080/api/auth/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
+    })
+    .then(response => {
+      if (!response.ok) throw new Error("Error en el registro");
+      return response.json();
+    })
+    .then(data => {
+      alert('Registro exitoso');
+      registerForm.reset();
+      photoPreview.src = '';
+      photoPreview.style.display = 'none';
+      document.querySelector('.preview-container').style.display = 'none';
+      fileName.textContent = 'Ningún archivo seleccionado';
+      strengthMeter.style.width = '0';
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Error al registrar usuario');
     });
+  });
 });

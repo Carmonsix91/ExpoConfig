@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 public class Profesor {
 
     @Id
-    private String matricula;
+    private String numeroEmpleado;
 
     private String nombre;
     private String apellido;
@@ -15,12 +15,12 @@ public class Profesor {
 
     // Getters y Setters
 
-    public String getMatricula() {
-        return matricula;
+    public String getNumeroEmpleado() {
+        return numeroEmpleado;
     }
 
-    public void setMatricula(String matricula) {
-        this.matricula = matricula;
+    public void setNumeroEmpleado(String numeroEmpleado) {
+        this.numeroEmpleado = numeroEmpleado;
     }
 
     public String getNombre() {

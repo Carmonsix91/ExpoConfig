@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             equipo: document.getElementById('equipo').value
         };
 
-        fetch("http://localhost:8080/api/proyectos", {
+        fetch("/api/proyectos", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

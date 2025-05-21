@@ -10,7 +10,7 @@ public class Proyecto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_proyecto;
 
-    private String titulo;            
+    private String titulo;
     private String descripcion;
     private String responsable;
     private String correo;
@@ -19,9 +19,12 @@ public class Proyecto {
     private String profesor;
     private String carrera;
     private String documento_url;
+    private String equipo;
     private LocalDate fecha_exposicion;
-    //private String equipo;
-    
+
+    @OneToOne(mappedBy = "proyecto")
+    private Equipo equipoAsignado;
+
     // Getters y setters
 
     public Long getId_proyecto() {
@@ -51,7 +54,7 @@ public class Proyecto {
     public String getResponsable() {
         return responsable;
     }
-    
+
     public void setResponsable(String responsable) {
         this.responsable = responsable;
     }
@@ -102,21 +105,29 @@ public class Proyecto {
 
     public void setDocumento_url(String documento_url) {
         this.documento_url = documento_url;
-    }   
+    }
 
-    /*public Equipo getEquipo() {
+    public String getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(Equipo equipo) {
+    public void setEquipo(String equipo) {
         this.equipo = equipo;
-    }  */
+    }
 
-     public LocalDate getFecha_exposicion() {
+    public LocalDate getFecha_exposicion() {
         return fecha_exposicion;
     }
 
     public void setFecha_exposicion(LocalDate fecha_exposicion) {
         this.fecha_exposicion = fecha_exposicion;
+    }
+
+    public Equipo getEquipoAsignado() {
+        return equipoAsignado;
+    }
+
+    public void setEquipoAsignado(Equipo equipoAsignado) {
+        this.equipoAsignado = equipoAsignado;
     }
 }

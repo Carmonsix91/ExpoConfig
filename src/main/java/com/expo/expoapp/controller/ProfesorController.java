@@ -30,10 +30,10 @@ public class ProfesorController {
     public Profesor obtener(@PathVariable String matricula) {
         return repository.findById(matricula).orElse(null);
     }
-
+    
     @PutMapping("/{matricula}")
-    public Profesor actualizar(@PathVariable String matricula, @RequestBody Profesor profesor) {
-        profesor.setMatricula(matricula);
+    public Profesor actualizar(@PathVariable String numeroEmpleado, @RequestBody Profesor profesor) {
+        profesor.setNumeroEmpleado(numeroEmpleado);
         return repository.save(profesor);
     }
 

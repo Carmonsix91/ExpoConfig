@@ -5,7 +5,7 @@ import com.expo.expoapp.repository.ProyectoRepository;
 import com.expo.expoapp.repository.EquipoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+//import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

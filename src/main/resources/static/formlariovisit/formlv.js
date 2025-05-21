@@ -48,7 +48,24 @@ document.addEventListener('DOMContentLoaded', function() {
         formData.forEach((value, key) => {
             datosVisitante[key] = value;
         });
-        console.log('Datos del visitante:', datosVisitante);
+        // Enviar datos al backend
+        fetch('/api/visitantes', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(datosVisitante)
+        })
+        .then(response => {
+            if (!response.ok) throw new Error("No se pudo registrar el visitante");
+            return response.json();
+        })
+        .then(data => {
+            console.log("Visitante registrado:", data);
+        })
+        .catch(error => {
+            console.error("Error al registrar visitante:", error);
+        });
     });
     
     btnNuevoRegistro.addEventListener('click', function() {

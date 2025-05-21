@@ -1,18 +1,24 @@
 package com.expo.expoapp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Estudiante {
 
     @Id
     private String boleta;
+
     private String nombre;
     private String apellido;
     private String correo;
     private String grupo;
     private String turno;
+    private String carrera;
+    private int semestre;
+
+    @ManyToOne
+    @JoinColumn(name = "equipo_id") // Clave foránea que hace match con Equipo.id_equipo
+    private Equipo equipo;
 
     // Getters y Setters
 
@@ -62,5 +68,29 @@ public class Estudiante {
 
     public void setTurno(String turno) {
         this.turno = turno;
+    }
+
+    public String getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        this.carrera = carrera;
+    }
+
+    public int getSemestre() {
+        return semestre;
+    }
+
+    public void setSemestre(int semestre) {
+        this.semestre = semestre;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
     }
 }
