@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudiante-EXPOconfig</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <img src="https://www.escom.ipn.mx/images/logoESCOM.png" alt="Logo ESCOM" class="navbar-logo">
+                <a href="../index/index.html" class="navbar-link">EXPOconfig</a>
+            </div>
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="../registroproyect/formprt.html" class="navbar-link">
+                        <i class="fas fa-project-diagram"></i> Registrar Proyecto
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="../credenciales/credenciales.html" class="navbar-link">
+                        <i class="fas fa-id-card"></i> Generar Credencial
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link profile-link">
+                        <i class="fas fa-user"></i> Perfil
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Barra de bienvenida y perfil rápido -->
+        <div class="profile-bar">
+            <div class="profile-info">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Foto de perfil" class="profile-pic">
+                <div class="profile-details">
+                    <h2>Bienvenido, <span id="alumno-nombre"></span></h2>
+                    <p>Boleta: <span id="alumno-boleta"></span></p>
+                    <p>Carrera: <span id="alumno-carrera"></span></p>
+                    <p>Semestre: <span id="alumno-semestre"></span></p>
+                    <p>Grupo: <span id="alumno-grupo"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Evaluación del Proyecto -->
+        <section class="evaluation-section">
+            <h2><i class="fas fa-clipboard-check"></i> Evaluación de Proyecto</h2>
+            
+            <div class="project-info">
+                <h3>Proyecto: <span id="project-name">Sistema de Gestión Escolar</span></h3>
+                <p>Estado: <span class="status completed">Evaluación Completa</span></p>
+            </div>
+
+            <div class="evaluation-grid">
+                <!-- Criterios de Evaluación -->
+                <div class="criteria-card">
+                    <h3><i class="fas fa-list-ol"></i> Criterios de Evaluación</h3>
+                    <ul class="criteria-list">
+                        <li><strong>Originalidad (20%)</strong>: Innovación y creatividad del proyecto</li>
+                        <li><strong>Funcionalidad (30%)</strong>: Cumplimiento de requisitos técnicos</li>
+                        <li><strong>Presentación (20%)</strong>: Claridad en la exposición y materiales</li>
+                        <li><strong>Documentación (15%)</strong>: Calidad de la documentación entregada</li>
+                        <li><strong>Defensa (15%)</strong>: Capacidad para responder preguntas</li>
+                    </ul>
+                </div>
+
+                <!-- Calificaciones Obtenidas -->
+                <div class="grades-card">
+                    <h3><i class="fas fa-star"></i> Calificaciones Obtenidas</h3>
+                    <div class="grades-table">
+                        <div class="grade-row">
+                            <span class="grade-criteria">Originalidad</span>
+                            <span class="grade-value">18/20</span>
+                            <div class="grade-bar">
+                                <div class="grade-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="grade-row">
+                            <span class="grade-criteria">Funcionalidad</span>
+                            <span class="grade-value">28/30</span>
+                            <div class="grade-bar">
+                                <div class="grade-progress" style="width: 93%"></div>
+                            </div>
+                        </div>
+                        <div class="grade-row">
+                            <span class="grade-criteria">Presentación</span>
+                            <span class="grade-value">17/20</span>
+                            <div class="grade-bar">
+                                <div class="grade-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="grade-row">
+                            <span class="grade-criteria">Documentación</span>
+                            <span class="grade-value">14/15</span>
+                            <div class="grade-bar">
+                                <div class="grade-progress" style="width: 93%"></div>
+                            </div>
+                        </div>
+                        <div class="grade-row">
+                            <span class="grade-criteria">Defensa</span>
+                            <span class="grade-value">13/15</span>
+                            <div class="grade-bar">
+                                <div class="grade-progress" style="width: 87%"></div>
+                            </div>
+                        </div>
+                        <div class="grade-total">
+                            <span class="total-label">Calificación Final:</span>
+                            <span class="total-value">90/100</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="evaluation-comments">
+                <h3><i class="fas fa-comment"></i> Comentarios del Evaluador</h3>
+                <div class="comments-box">
+                    <p>Excelente trabajo en la implementación del sistema. La documentación es clara y completa. Sugerencia: mejorar la interfaz de usuario para hacerla más intuitiva.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="alumno.js"></script>
+</body>
+</html>

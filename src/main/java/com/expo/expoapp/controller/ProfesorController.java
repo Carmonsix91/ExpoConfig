@@ -1,0 +1,44 @@
+package com.expo.expoapp.controller;
+
+import com.expo.expoapp.model.Profesor;
+import com.expo.expoapp.repository.ProfesorRepository;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/profesores")
+public class ProfesorController {
+
+    private final ProfesorRepository repository;
+
+    public ProfesorController(ProfesorRepository repository) {
+        this.repository = repository;
+    }
+
+    @GetMapping
+    public List<Profesor> listar() {
+        return repository.findAll();
+    }
+
+    @PostMapping
+    public Profesor crear(@RequestBody Profesor profesor) {
+        return repository.save(profesor);
+    }
+
+    @GetMapping("/{matricula}")
+    public Profesor obtener(@PathVariable String matricula) {
+        return repository.findById(matricula).orElse(null);
+    }
+
+    @PutMapping("/{matricula}")
+    public Profesor actualizar(@PathVariable String matricula, @RequestBody Profesor profesor) {
+        profesor.setMatricula(matricula);
+        return repository.save(profesor);
+    }
+
+    @DeleteMapping("/{matricula}")
+    public void eliminar(@PathVariable String matricula) {
+        repository.deleteById(matricula);
+    }
+}

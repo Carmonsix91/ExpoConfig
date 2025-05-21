@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesor-EXPoconfig</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <img src="https://www.escom.ipn.mx/images/logoESCOM.png" alt="Logo ESCOM" class="navbar-logo">
+                <a href="..//index/index.html" class="navbar-link">EXPOconfig</a>
+            </div>
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link">
+                        <i class="fas fa-project-diagram"></i> Calificar Proyectos
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link">
+                        <i class="fas fa-id-card"></i> Generar Criterios de Evaluación
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="#" class="navbar-link profile-link">
+                        <i class="fas fa-user"></i> Perfil
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <!-- Barra de bienvenida y perfil rápido -->
+        <div class="profile-bar">
+            <div class="profile-info">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Foto de perfil" class="profile-pic">
+                <div class="profile-details">
+                    <h2>Bienvenido/a, <span id="profesor-nombre"></span></h2>
+                    <p>Número de empleado: <span id="profesor-boleta"></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Proyectos Registrados -->
+        <section class="projects-section">
+            <h2><i class="fas fa-list-ul"></i> Proyectos Registrados</h2>
+            
+            <div class="projects-filter">
+                <div class="filter-group">
+                    <label for="filter-semester"><i class="fas fa-filter"></i> Filtrar por:</label>
+                    <select id="filter-semester" class="filter-select">
+                        <option value="all">Todos los semestres</option>
+                        <option value="4">4to Semestre</option>
+                        <option value="5">5to Semestre</option>
+                        <option value="6">6to Semestre</option>
+                    </select>
+                    <select id="filter-status" class="filter-select">
+                        <option value="all">Todos los estados</option>
+                        <option value="pending">Pendientes</option>
+                        <option value="evaluated">Evaluados</option>
+                    </select>
+                </div>
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar proyecto..." class="search-input">
+                    <button class="search-button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Proyecto 1 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Sistema de Gestión Escolar</h3>
+                        <span class="project-status pending">Pendiente</span>
+                    </div>
+                    <div class="project-body">
+                        <p><strong>Alumno:</strong> Juan Pérez García</p>
+                        <p><strong>Boleta:</strong> 2020630123</p>
+                        <p><strong>Semestre:</strong> 4</p>
+                        <p><strong>Grupo:</strong> 4CV1</p>
+                        <p><strong>Descripción:</strong> Sistema integral para administración escolar con módulos para alumnos, profesores y administradores.</p>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-evaluate"><i class="fas fa-check-circle"></i> Evaluar</button>
+                        <button class="btn-view"><i class="fas fa-eye"></i> Detalles</button>
+                    </div>
+                </div>
+
+                <!-- Proyecto 2 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Aplicación Móvil para Turismo</h3>
+                        <span class="project-status evaluated">Evaluado</span>
+                    </div>
+                    <div class="project-body">
+                        <p><strong>Alumno:</strong> María López Sánchez</p>
+                        <p><strong>Boleta:</strong> 2020630456</p>
+                        <p><strong>Semestre:</strong> 5</p>
+                        <p><strong>Grupo:</strong> 5CV2</p>
+                        <p><strong>Descripción:</strong> Aplicación con realidad aumentada para puntos turísticos de la CDMX.</p>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-view"><i class="fas fa-eye"></i> Ver Evaluación</button>
+                        <button class="btn-download"><i class="fas fa-download"></i> Documentos</button>
+                    </div>
+                </div>
+
+                <!-- Proyecto 3 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Plataforma de Cursos en Línea</h3>
+                        <span class="project-status pending">Pendiente</span>
+                    </div>
+                    <div class="project-body">
+                        <p><strong>Alumno:</strong> Carlos Rodríguez Méndez</p>
+                        <p><strong>Boleta:</strong> 2020630789</p>
+                        <p><strong>Semestre:</strong> 6</p>
+                        <p><strong>Grupo:</strong> 6CV1</p>
+                        <p><strong>Descripción:</strong> Plataforma LMS con integración de videoconferencias y evaluaciones automatizadas.</p>
+                    </div>
+                    <div class="project-actions">
+                        <button class="btn-evaluate"><i class="fas fa-check-circle"></i> Evaluar</button>
+                        <button class="btn-view"><i class="fas fa-eye"></i> Detalles</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="profesor.js"></script>
+</body>
+</html>

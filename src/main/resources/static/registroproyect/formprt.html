@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Proyectos - ESCOM</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <a href="..//alumno/alumno.html" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="container">
+        <header>
+            <div class="logos">
+                <div class="logo-escom">
+                    <img src="https://www.escom.ipn.mx/images/conocenos/escudoESCOM.png" alt="Logo ESCOM">
+                </div>
+                <div>
+                    <h1>Registro de Proyectos</h1>
+                </div>
+                <div class="logo-ipn">
+                    <img src="https://i.pinimg.com/originals/22/42/18/22421831a43187e599cf0629662935e7.png" alt="Logo IPN">
+                </div>
+                
+            </div>
+            
+            <p>Por favor complete el formulario para registrar su visita a la exposición</p>
+        </header>
+
+        <form id="registroProyecto">
+            <div class="form-group">
+                <label for="nombreProyecto">Nombre del Proyecto:</label>
+                <input type="text" id="nombreProyecto" name="nombreProyecto" required>
+            </div>
+
+            <div class="form-group">
+                <label for="responsable">Responsable del proyecto:</label>
+                <input type="text" id="responsable" name="responsable" required>
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" id="correo" name="correo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="boleta">Boleta:</label>
+                <input type="text" id="boleta" name="boleta" required>
+            </div>
+
+            <div class="form-group">
+                <label for="materia">Materia Asociada:</label>
+                <input type="text" id="materia" name="materia" required>
+            </div>
+
+            <div class="form-group">
+                <label for="profesor">Profesor Responsable:</label>
+                <input type="text" id="profesor" name="profesor" required>
+            </div>
+
+            <div class="form-group">
+                <label for="carrera">Carrera o Departamento:</label>
+                <select id="carrera" name="carrera" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="isc">Ingeniería en Sistemas Computacionales</option>
+                    <option value="ia">Ingeniería en Inteligencía Artificial</option>
+                    <option value="lcd">Licenciatura de Ciencia de Datos</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción del proyecto:</label>
+                <textarea id="descripcion" name="descripcion" rows="5" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="equipo">Integrantes del equipo (opcional):</label>
+                <textarea id="equipo" name="equipo" rows="3" placeholder="Nombres y matrículas separados por coma"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="documento">Documentación del proyecto (PDF/PNG):</label>
+                <div class="file-upload">
+                    <input type="file" id="documento" name="documento" accept=".pdf,.png" required>
+                    <label for="documento" class="file-label">
+                        <span class="file-button">Seleccionar archivo</span>
+                        <span class="file-name">No se ha seleccionado ningún archivo</span>
+                    </label>
+                </div>
+                <small class="file-hint">Formatos aceptados: PDF o PNG (Tamaño máximo: 5MB)</small>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <label>
+                    <input type="checkbox" id="requisitos" name="requisitos" required>
+                    Certifico que cumplo con los requisitos para registrar este proyecto
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-submit">Registrar Proyecto</button>
+                <button type="reset" class="btn-reset">Limpiar Formulario</button>
+            </div>
+        </form>
+
+        <div id="mensajeExito" class="mensaje-exito" style="display: none;">
+            <h3>¡Proyecto registrado exitosamente!</h3>
+            <div class="resumen-container">
+                <p><strong>ID del Proyecto:</strong> <span id="proyectoId" class="id-proyecto"></span></p>
+                <p id="resumenProyecto"></p>
+            </div>
+            <button id="btnNuevoProyecto" class="btn-nuevo">Registrar otro proyecto</button>
+        </div>
+    </div>
+
+    <script src="formp.js"></script>
+</body>
+</html>
