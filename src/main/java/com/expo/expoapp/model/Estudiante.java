@@ -2,7 +2,7 @@ package com.expo.expoapp.model;
 
 import jakarta.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.List;
+
 
 @Entity
 @JsonIgnoreProperties({"equipo"})
