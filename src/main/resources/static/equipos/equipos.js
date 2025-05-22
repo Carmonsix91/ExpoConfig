@@ -96,30 +96,17 @@ function crearEquipo() {
     });
 }
 
-// Cargar todos los equipos en la tabla (soporta array o objeto)
+// Cargar todos los equipos en la tabla
 function cargarEquipos() {
     fetch("/api/equipos/listar")
         .then(response => response.json())
         .then(equipos => {
-            // Si equipos es un objeto, conviértelo a array para forEach
-            if (!Array.isArray(equipos)) {
-                equipos = [equipos];
-            }
             const tabla = document.querySelector("#tablaEquipos tbody");
-            tabla.innerHTML = ""; // Limpiar antes de volver a agregar filas
-
-            if (!equipos || equipos.length === 0 || !equipos[0].id) {
-                const fila = document.createElement("tr");
-                fila.innerHTML = `<td colspan="4">No hay equipos registrados.</td>`;
-                tabla.appendChild(fila);
-                return;
-            }
-
+            tabla.innerHTML = ""; // Limpiar tabla antes de insertar
             equipos.forEach(equipo => {
-                let integrantes = (equipo.integrantes && Array.isArray(equipo.integrantes))
-                    ? equipo.integrantes.map(i => i.nombre ? i.nombre : 'Sin nombre').join(", ")
-                    : "0";
                 const fila = document.createElement("tr");
+                // Puedes mostrar el número de integrantes si tu backend lo envía en el JSON
+                const integrantes = equipo.integrantes ? equipo.integrantes.length : 0;
                 fila.innerHTML = `
                     <td>${equipo.id}</td>
                     <td>${equipo.nombre}</td>
@@ -129,11 +116,7 @@ function cargarEquipos() {
                 tabla.appendChild(fila);
             });
         })
-        .catch(error => {
-            console.error("Error al cargar equipos:", error);
-            const tabla = document.querySelector("#tablaEquipos tbody");
-            tabla.innerHTML = `<tr><td colspan="4">Error al cargar equipos.</td></tr>`;
-        });
+        .catch(error => console.error("Error al cargar equipos:", error));
 }
 
 // Al cargar la página
@@ -142,5 +125,6 @@ window.onload = function () {
     if (idEquipo) {
         mostrarProyectoAsociado(idEquipo);
     }
+
     cargarEquipos();
 };

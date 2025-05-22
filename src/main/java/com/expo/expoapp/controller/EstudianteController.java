@@ -30,7 +30,7 @@ public class EstudianteController {
 
     // Obtener estudiante por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Estudiante> obtenerEstudiante(@PathVariable Long id) {
+    public ResponseEntity<Estudiante> obtenerEstudiante(@PathVariable String id) {
         Optional<Estudiante> estudiante = estudianteRepository.findById(id);
         return estudiante.map(ResponseEntity::ok)
                          .orElseGet(() -> ResponseEntity.notFound().build());
@@ -44,7 +44,7 @@ public class EstudianteController {
 
     // Unir estudiante a un equipo
     @PutMapping("/unir/{idEstudiante}/{idEquipo}")
-    public ResponseEntity<Estudiante> unirAEquipo(@PathVariable Long idEstudiante, @PathVariable Long idEquipo) {
+    public ResponseEntity<Estudiante> unirAEquipo(@PathVariable String idEstudiante, @PathVariable Long idEquipo) {
         Optional<Estudiante> estudianteOpt = estudianteRepository.findById(idEstudiante);
         Optional<Equipo> equipoOpt = equipoRepository.findById(idEquipo);
 
@@ -67,7 +67,7 @@ public class EstudianteController {
 
     // (Opcional) Remover estudiante de un equipo
     @PutMapping("/salir/{idEstudiante}")
-    public ResponseEntity<Estudiante> salirDeEquipo(@PathVariable Long idEstudiante) {
+    public ResponseEntity<Estudiante> salirDeEquipo(@PathVariable String idEstudiante) {
         Optional<Estudiante> estudianteOpt = estudianteRepository.findById(idEstudiante);
 
         if (estudianteOpt.isPresent()) {
@@ -82,7 +82,7 @@ public class EstudianteController {
 
     // (Opcional) Actualizar información de estudiante
     @PutMapping("/actualizar/{id}")
-    public ResponseEntity<Estudiante> actualizarEstudiante(@PathVariable Long id, @RequestBody Estudiante datos) {
+    public ResponseEntity<Estudiante> actualizarEstudiante(@PathVariable String id, @RequestBody Estudiante datos) {
         Optional<Estudiante> estudianteOpt = estudianteRepository.findById(id);
         if (estudianteOpt.isPresent()) {
             Estudiante estudiante = estudianteOpt.get();

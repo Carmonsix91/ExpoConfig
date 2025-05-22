@@ -27,7 +27,7 @@ public class ProfesorController {
     }
 
     @GetMapping("/{matricula}")
-    public Profesor obtener(@PathVariable Long matricula) {
+    public Profesor obtener(@PathVariable String matricula) {
         return repository.findById(matricula).orElse(null);
     }
         
@@ -38,7 +38,7 @@ public class ProfesorController {
     }
 
     @DeleteMapping("/{matricula}")
-    public void eliminar(@PathVariable Long matricula) {
+    public void eliminar(@PathVariable String matricula) {
         repository.deleteById(matricula);
     }
 }
