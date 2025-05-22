@@ -5,11 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
   const extraFields = document.getElementById('alumno-extra-fields');
   const passwordInput = document.getElementById('register-password');
   const confirmInput = document.getElementById('register-confirm');
-  const passwordError = document.getElementById('password-error');
-  const strengthMeter = document.querySelector('.strength-meter');
-  const photoInput = document.getElementById('register-photo');
-  const photoPreview = document.getElementById('photo-preview');
-  const fileName = document.querySelector('.file-name');
 
   tipoRadios.forEach(radio => {
     radio.addEventListener('change', function () {
@@ -25,42 +20,6 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('register-semestre').required = false;
       }
     });
-  });
-
-  photoInput.addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-      fileName.textContent = file.name;
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        photoPreview.src = e.target.result;
-        photoPreview.style.display = 'block';
-        document.querySelector('.preview-container').style.display = 'block';
-      }
-      reader.readAsDataURL(file);
-    } else {
-      photoPreview.src = '';
-      photoPreview.style.display = 'none';
-      document.querySelector('.preview-container').style.display = 'none';
-      fileName.textContent = 'Ningún archivo seleccionado';
-    }
-  });
-
-  passwordInput.addEventListener('input', function() {
-    const password = this.value;
-    let strength = 0;
-    if (password.length >= 8) strength += 20;
-    if (/\d/.test(password)) strength += 20;
-    if (/[A-Z]/.test(password)) strength += 20;
-    if (/[^A-Za-z0-9]/.test(password)) strength += 20;
-    if (password.length >= 12) strength += 20;
-    strengthMeter.style.width = `${strength}%`;
-    strengthMeter.style.backgroundColor = strength < 40 ? '#d32f2f' : strength < 70 ? '#ffa000' : '#388e3c';
-  });
-
-  confirmInput.addEventListener('input', function() {
-    passwordError.style.display = passwordInput.value !== this.value ? 'block' : 'none';
-    this.classList.toggle('input-error', passwordInput.value !== this.value);
   });
 
   loginForm.addEventListener('submit', function(e) {
@@ -109,6 +68,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const formData = {
       userType: tipo,
       name: document.getElementById('register-name').value,
+      apellido: document.getElementById('register-apellido').value,
       email: document.getElementById('register-email').value,
       id: document.getElementById('register-id').value,
       password: password
@@ -132,11 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
     .then(data => {
       alert('Registro exitoso');
       registerForm.reset();
-      photoPreview.src = '';
-      photoPreview.style.display = 'none';
-      document.querySelector('.preview-container').style.display = 'none';
-      fileName.textContent = 'Ningún archivo seleccionado';
-      strengthMeter.style.width = '0';
     })
     .catch(error => {
       console.error(error);

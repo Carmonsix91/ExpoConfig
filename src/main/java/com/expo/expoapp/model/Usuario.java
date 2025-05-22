@@ -3,6 +3,7 @@ package com.expo.expoapp.model;
 import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario {
 
     @Id
@@ -11,40 +12,57 @@ public class Usuario {
 
     private String nombre;
     private String email;
-    private String identificador;
+    private String identificador; // boleta o número de empleado
     private String password;
-    private String tipo;
-    
-    private String carrera;
-    private String grupo;
-    private Integer semestre;
+    private String tipo; // "estudiante" o "profesor"
 
-    // Getters y setters
+    // Getters y Setters
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public String getNombre() {
+        return nombre;
+    }
 
-    public String getIdentificador() { return identificador; }
-    public void setIdentificador(String identificador) { this.identificador = identificador; }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getTipo() { return tipo; }
-    public void setTipo(String tipo) { this.tipo = tipo; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getCarrera() { return carrera; }
-    public void setCarrera(String carrera) { this.carrera = carrera; }
+    public String getIdentificador() {
+        return identificador;
+    }
 
-    public String getGrupo() { return grupo; }
-    public void setGrupo(String grupo) { this.grupo = grupo; }
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
 
-    public Integer getSemestre() { return semestre; }
-    public void setSemestre(Integer semestre) { this.semestre = semestre; }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
 }

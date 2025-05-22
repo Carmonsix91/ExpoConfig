@@ -11,7 +11,7 @@ import java.util.List;
 public class EstudianteController {
 
     private final EstudianteRepository repository;
-
+    
     public EstudianteController(EstudianteRepository repository) {
         this.repository = repository;
     }
@@ -30,7 +30,7 @@ public class EstudianteController {
     public Estudiante obtenerEstudiante(@PathVariable String boleta) {
         return repository.findById(boleta).orElse(null);
     }
-
+    
     @PutMapping("/{boleta}")
     public Estudiante actualizarEstudiante(@PathVariable String boleta, @RequestBody Estudiante estudiante) {
         estudiante.setBoleta(boleta);
