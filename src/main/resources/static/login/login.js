@@ -37,7 +37,11 @@ document.addEventListener('DOMContentLoaded', function() {
       return response.json();
     })
     .then(data => {
+      // Guardar el objeto usuario completo
       localStorage.setItem('usuario', JSON.stringify(data));
+      // Guardar el ID por separado para facilitar el acceso en otras páginas
+      localStorage.setItem('id', data.id);
+
       const tipo = data.tipo?.toLowerCase();
       if (tipo === 'alumno') {
         window.location.href = "/alumno/alumno.html";

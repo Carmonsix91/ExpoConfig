@@ -37,7 +37,7 @@ public class ProyectoController {
         return proyectoRepository.findAll();
     }
 
-    /*@PostMapping
+   /* @PostMapping
     public ResponseEntity<Proyecto> crear(@RequestBody Proyecto proyecto) {
         if (proyecto.getEquipo() == null || proyecto.getEquipo().getId_equipo() == null) {
             return ResponseEntity

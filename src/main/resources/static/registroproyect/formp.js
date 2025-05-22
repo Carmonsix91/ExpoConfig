@@ -1,15 +1,16 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const form = document.getElementById('registroProyecto');
     const mensajeExito = document.getElementById('mensajeExito');
     const btnNuevoProyecto = document.getElementById('btnNuevoProyecto');
     const resumenProyecto = document.getElementById('resumenProyecto');
     const fileInput = document.getElementById('documento');
     const fileName = document.querySelector('.file-name');
+
     const previewContainer = document.createElement('div');
     previewContainer.className = 'preview-container';
     fileInput.parentNode.insertBefore(previewContainer, fileInput.nextSibling);
 
-    fileInput.addEventListener('change', function(e) {
+    fileInput.addEventListener('change', function (e) {
         const file = e.target.files[0];
         if (file) {
             fileName.textContent = file.name;
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
             } else if (file.type === 'image/png') {
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = function (e) {
                     previewContent.innerHTML = `
                         <img src="${e.target.result}" class="preview-image" alt="Vista previa">
                         <p>${file.name}</p>
@@ -57,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', function (e) {
         e.preventDefault();
 
         if (!fileInput.files[0]) {
@@ -70,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
+        const idEquipo = localStorage.getItem("idEquipo");
+
         const proyecto = {
             titulo: document.getElementById('nombreProyecto').value,
             descripcion: document.getElementById('descripcion').value,
@@ -79,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             materia: document.getElementById('materia').value,
             profesor: document.getElementById('profesor').value,
             carrera: document.getElementById('carrera').value,
-            equipo: document.getElementById('equipo').value
+            equipo: idEquipo ? { id: parseInt(idEquipo) } : null
         };
 
         fetch("/api/proyectos", {
@@ -98,7 +101,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return response.json();
         })
         .then(data => {
-            // Mostrar resumen en el HTML
             document.getElementById('proyectoId').textContent = data.id_proyecto || "N/A";
             resumenProyecto.innerHTML = `
                 <strong>Proyecto:</strong> ${data.titulo}<br>
@@ -117,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    btnNuevoProyecto.addEventListener('click', function() {
+    btnNuevoProyecto.addEventListener('click', function () {
         form.reset();
         form.style.display = 'block';
         mensajeExito.style.display = 'none';

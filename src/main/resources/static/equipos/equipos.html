@@ -1,57 +1,52 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Administración de Equipos</title>
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/equipos.css" />
-  </head>
-  <body>
-    <div class="container">
-      <h1>Administración de Equipos</h1>
-      <section id="equipos-disponibles">
-        <h2>Equipos Registrados</h2>
-        <table id="tablaEquipos">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre del Equipo</th>
-              <th>Integrantes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Aquí se insertarán dinámicamente -->
-          </tbody>
-        </table>
-      </section>
+<head>
+  <meta charset="UTF-8" />
+  <title>Administración de Equipos</title>
+  <link rel="stylesheet" href="/css/styles.css" />
+  <link rel="stylesheet" href="/css/equipos.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Administración de Equipos</h1>
 
-      <section id="acciones-equipo">
-        <h2>Crear un nuevo equipo</h2>
-        <label for="nombreEquipoNuevo">Nombre del equipo</label>
-        <input
-          type="text"
-          id="nombreEquipoNuevo"
-          placeholder="Nombre del equipo"
-        />
-        <button onclick="crearEquipo()">Crear equipo</button>
+    <section id="equipos-disponibles">
+      <h2>Equipos Registrados</h2>
+      <table id="tablaEquipos">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre del Equipo</th>
+            <th>Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Se llenará con JavaScript -->
+        </tbody>
+      </table>
+    </section>
 
-        <h2>Unirse a un equipo existente</h2>
-        <label for="idEquipoExistente">ID del equipo</label>
-        <input type="text" id="idEquipoExistente" placeholder="ID del equipo" />
-        <button onclick="unirseAEquipo()">Unirse al equipo</button>
-      </section>
+    <section id="acciones-equipo">
+      <h2>Crear un nuevo equipo</h2>
+      <label for="nombreEquipoNuevo">Nombre del equipo</label>
+      <input type="text" id="nombreEquipoNuevo" placeholder="Nombre del equipo" />
+      <button onclick="crearEquipo()">Crear equipo</button>
 
-      <section id="proyecto-asociado">
-        <h2>Proyecto Asociado</h2>
-        <div id="info-proyecto">
-          <p><strong>Nombre:</strong> <span id="nombreProyecto"></span></p>
-          <p>
-            <strong>Descripción:</strong> <span id="descripcionProyecto"></span>
-          </p>
-        </div>
-      </section>
-    </div>
+      <h2>Unirse a un equipo existente</h2>
+      <label for="idEquipoExistente">ID del equipo</label>
+      <input type="text" id="idEquipoExistente" placeholder="ID del equipo" />
+      <button onclick="unirseAEquipoDesdeInput()">Unirse al equipo</button>
+    </section>
 
-    <script src="equipos.js"></script>
-  </body>
+    <section id="proyecto-asociado" class="card mt-4 p-3 border bg-light rounded shadow-sm">
+      <h2>Proyecto Asociado</h2>
+      <div id="info-proyecto">
+        <p><strong>Nombre:</strong> <span id="nombreProyecto"></span></p>
+        <p><strong>Descripción:</strong> <span id="descripcionProyecto"></span></p>
+      </div>
+    </section>
+  </div>
+
+  <script src="equipos.js"></script>
+</body>
 </html>

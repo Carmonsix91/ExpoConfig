@@ -7,6 +7,7 @@ import com.expo.expoapp.repository.EquipoRepository;
 import com.expo.expoapp.repository.EstudianteRepository;
 import com.expo.expoapp.repository.ProyectoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,20 +28,11 @@ public class EquipoController {
     private ProyectoRepository proyectoRepository;
 
     @PostMapping("/crear")
-    public Equipo crearEquipo(@RequestParam String nombre, @RequestParam String estudianteId) {
-        Equipo nuevoEquipo = new Equipo();
-        nuevoEquipo.setNombre(nombre);
-        nuevoEquipo = equipoRepository.save(nuevoEquipo);
-
-        Optional<Estudiante> estudianteOpt = estudianteRepository.findById(estudianteId);
-        if (estudianteOpt.isPresent()) {
-            Estudiante estudiante = estudianteOpt.get();
-            estudiante.setEquipo(nuevoEquipo);
-            estudianteRepository.save(estudiante);
-        }
-
-        return nuevoEquipo;
+    public ResponseEntity<Equipo> crearEquipo(@RequestBody Equipo equipo) {
+        Equipo nuevo = equipoRepository.save(equipo);
+        return ResponseEntity.ok(nuevo);
     }
+
 
     @PostMapping("/unirse")
     public String unirseAEquipo(@RequestParam Long equipoId, @RequestParam String estudianteId) {
@@ -77,12 +69,14 @@ public class EquipoController {
     return equipoRepository.findAll();
     }
 
-    @GetMapping("/proyectoPorEstudiante")
-    public Proyecto obtenerProyectoPorEstudiante(@RequestParam String estudianteId) {
-        Optional<Estudiante> estudianteOpt = estudianteRepository.findById(estudianteId);
-        return estudianteOpt.map(est -> {
-            Equipo equipo = est.getEquipo();
-            return (equipo != null) ? equipo.getProyecto() : null;
-        }).orElse(null);
+    @GetMapping("/proyecto/{idEquipo}")
+    public ResponseEntity<Proyecto> obtenerProyectoPorEquipo(@PathVariable Long idEquipo) { 
+        Optional<Equipo> equipo = equipoRepository.findById(idEquipo);
+        if (equipo.isPresent() && equipo.get().getProyecto() != null) {
+            return ResponseEntity.ok(equipo.get().getProyecto());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
+
 }

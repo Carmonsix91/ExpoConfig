@@ -13,7 +13,7 @@ public class Equipo {
     private Long id;
 
     private String nombre;
-
+    
     @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Estudiante> integrantes;
