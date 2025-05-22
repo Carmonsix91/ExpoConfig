@@ -1,5 +1,7 @@
 package com.expo.expoapp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -14,7 +16,13 @@ public class Estudiante extends Usuario {
 
     @ManyToOne
     @JoinColumn(name = "equipo_id")
+    @JsonBackReference
     private Equipo equipo;
+
+    
+
+
+
 
     // Getters y Setters
 

@@ -19,11 +19,11 @@ public class Proyecto {
     private String profesor;
     private String carrera;
     private String documento_url;
-    private String equipo;
     private LocalDate fecha_exposicion;
 
     @OneToOne(mappedBy = "proyecto")
-    private Equipo equipoAsignado;
+    private Equipo equipo;
+
 
     // Getters y setters
 
@@ -107,13 +107,9 @@ public class Proyecto {
         this.documento_url = documento_url;
     }
 
-    public String getEquipo() {
-        return equipo;
-    }
+    public Equipo getEquipo() { return equipo; }
 
-    public void setEquipo(String equipo) {
-        this.equipo = equipo;
-    }
+    public void setEquipo(Equipo equipo) { this.equipo = equipo; }
 
     public LocalDate getFecha_exposicion() {
         return fecha_exposicion;
@@ -123,11 +119,5 @@ public class Proyecto {
         this.fecha_exposicion = fecha_exposicion;
     }
 
-    public Equipo getEquipoAsignado() {
-        return equipoAsignado;
-    }
 
-    public void setEquipoAsignado(Equipo equipoAsignado) {
-        this.equipoAsignado = equipoAsignado;
-    }
 }

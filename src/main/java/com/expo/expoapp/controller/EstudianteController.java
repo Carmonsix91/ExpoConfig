@@ -15,7 +15,7 @@ public class EstudianteController {
     public EstudianteController(EstudianteRepository repository) {
         this.repository = repository;
     }
-
+    
     @GetMapping
     public List<Estudiante> listarEstudiantes() {
         return repository.findAll();
