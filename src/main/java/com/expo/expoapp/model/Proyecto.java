@@ -24,7 +24,6 @@ public class Proyecto {
     @OneToOne(mappedBy = "proyecto")
     private Equipo equipo;
 
-
     // Getters y setters
 
     public Long getId_proyecto() {
@@ -118,6 +117,4 @@ public class Proyecto {
     public void setFecha_exposicion(LocalDate fecha_exposicion) {
         this.fecha_exposicion = fecha_exposicion;
     }
-
-
 }

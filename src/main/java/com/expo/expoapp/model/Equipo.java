@@ -3,8 +3,6 @@ package com.expo.expoapp.model;
 import jakarta.persistence.*;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Equipo {
 
@@ -13,13 +11,13 @@ public class Equipo {
     private Long id;
 
     private String nombre;
-    
-    @OneToMany(mappedBy = "equipo", cascade = CascadeType.ALL)
-    @JsonManagedReference
+
+    @OneToMany(mappedBy = "equipo")
     private List<Estudiante> integrantes;
 
-
-    @OneToOne
+    // AHORA Equipo es el dueño de la relación uno a uno con Proyecto
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "proyecto_id", referencedColumnName = "id_proyecto", unique = true)
     private Proyecto proyecto;
 
     // Getters y Setters
