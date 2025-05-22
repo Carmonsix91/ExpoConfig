@@ -1,78 +1,53 @@
 package com.expo.expoapp.controller;
 
 import com.expo.expoapp.model.Proyecto;
+import com.expo.expoapp.model.Equipo;
 import com.expo.expoapp.repository.ProyectoRepository;
 import com.expo.expoapp.repository.EquipoRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.http.ResponseEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/proyectos")
+@CrossOrigin(origins = "*")
 public class ProyectoController {
 
-    private final ProyectoRepository proyectoRepository;
-    //private final EquipoRepository equipoRepository;
+    @Autowired
+    private ProyectoRepository proyectoRepository;
 
-     @Autowired
-    public ProyectoController(ProyectoRepository proyectoRepository) {
-        this.proyectoRepository = proyectoRepository;
-    }
+    @Autowired
+    private EquipoRepository equipoRepository;
 
+    // Registrar un nuevo proyecto asociado a un equipo
     @PostMapping
-    public Proyecto crear(@RequestBody Proyecto proyecto) {
-        return proyectoRepository.save(proyecto);
+    public ResponseEntity<Proyecto> registrarProyecto(@RequestBody Proyecto proyecto) {
+        if (proyecto.getEquipo() != null && proyecto.getEquipo().getId() != null) {
+            Optional<Equipo> equipoOpt = equipoRepository.findById(proyecto.getEquipo().getId());
+            if (equipoOpt.isPresent()) {
+                proyecto.setEquipo(equipoOpt.get());
+            } else {
+                return ResponseEntity.badRequest().body(null);
+            }
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
+        Proyecto nuevo = proyectoRepository.save(proyecto);
+        return ResponseEntity.ok(nuevo);
     }
 
-    public ProyectoController(ProyectoRepository proyectoRepository, EquipoRepository equipoRepository) {
-        this.proyectoRepository = proyectoRepository;
-        //this.equipoRepository = equipoRepository;
-    }
-
-    @GetMapping
-    public List<Proyecto> listar() {
+    // (Opcional) Obtener todos los proyectos
+    @GetMapping("/listar")
+    public Iterable<Proyecto> listarProyectos() {
         return proyectoRepository.findAll();
     }
 
-   /* @PostMapping
-    public ResponseEntity<Proyecto> crear(@RequestBody Proyecto proyecto) {
-        if (proyecto.getEquipo() == null || proyecto.getEquipo().getId_equipo() == null) {
-            return ResponseEntity
-                    .badRequest()
-                    .build();
-        }
-
-    // Buscar si el equipo existe
-        Long idEquipo = proyecto.getEquipo().getId_equipo();
-        return equipoRepository.findById(idEquipo)
-                .map(equipoExistente -> {
-                    proyecto.setEquipo(equipoExistente); // asegura referencia válida
-                    Proyecto proyectoGuardado = proyectoRepository.save(proyecto);
-                    return ResponseEntity.ok(proyectoGuardado);
-                })
-                .orElseGet(() -> ResponseEntity
-                        .badRequest()
-                        .build());
-    } */
-
-
+    // (Opcional) Obtener proyecto por ID
     @GetMapping("/{id}")
-    public Proyecto obtener(@PathVariable Long id) {
-        return proyectoRepository.findById(id).orElse(null);
+    public ResponseEntity<Proyecto> obtenerProyecto(@PathVariable Long id) {
+        Optional<Proyecto> proyectoOpt = proyectoRepository.findById(id);
+        return proyectoOpt.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
-
-    @PutMapping("/{id}")
-    public Proyecto actualizar(@PathVariable Long id, @RequestBody Proyecto proyecto) {
-        proyecto.setId_proyecto(id);
-        return proyectoRepository.save(proyecto);
-    }
-
-    @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable Long id) {
-        proyectoRepository.deleteById(id);
-    }
-    
 }

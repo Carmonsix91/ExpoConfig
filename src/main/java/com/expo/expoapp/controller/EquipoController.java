@@ -35,7 +35,7 @@ public class EquipoController {
 
 
     @PostMapping("/unirse")
-    public String unirseAEquipo(@RequestParam Long equipoId, @RequestParam String estudianteId) {
+    public String unirseAEquipo(@RequestParam Long equipoId, @RequestParam Long estudianteId) {
         Optional<Equipo> equipoOpt = equipoRepository.findById(equipoId);
         Optional<Estudiante> estudianteOpt = estudianteRepository.findById(estudianteId);
 
@@ -65,9 +65,10 @@ public class EquipoController {
     }
     
     @GetMapping("/listar")
-    public List<Equipo> listarEquipos() {
-    return equipoRepository.findAll();
+    public List<Equipo> listarEquipos() {   
+        return equipoRepository.findAll();
     }
+
 
     @GetMapping("/proyecto/{idEquipo}")
     public ResponseEntity<Proyecto> obtenerProyectoPorEquipo(@PathVariable Long idEquipo) { 
