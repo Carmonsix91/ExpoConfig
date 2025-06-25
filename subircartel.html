@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subir Cartel - EXPOconfig</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <a href="alumno.html" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <img src="https://www.escom.ipn.mx/images/logoESCOM.png" alt="Logo ESCOM" class="navbar-logo">
+                <a href="index.html" class="navbar-link">EXPOconfig</a>
+            </div>
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="formprt.html" class="navbar-link">
+                        <i class="fas fa-project-diagram"></i> Registrar Proyecto
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="constancias.html" class="navbar-link">
+                        <i class="fas fa-id-card"></i> Generar Constancia
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </nav>
+    <div class="main-content">
+        <section class="upload-section">
+            <h1><i class="fas fa-upload"></i> Subir Cartel del Proyecto</h1>
+            
+            <div class="upload-container">
+                <div class="upload-info">
+                    <h2>Instrucciones:</h2>
+                    <ol>
+                        <li>El cartel debe ser en formato PDF o imagen (JPG/PNG)</li>
+                        <li>Tamaño recomendado: A1 (594 x 841 mm) o A0 (841 x 1189 mm)</li>
+                        <li>Resolución mínima: 300 DPI</li>
+                        <li>Tamaño máximo de archivo: 10MB</li>
+                    </ol>
+                </div>
+                
+                <div class="upload-box">
+                    <div class="file-upload">
+                        <input type="file" id="poster-upload" accept=".pdf,.jpg,.jpeg,.png">
+                        <label for="poster-upload" class="upload-label">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span>Seleccionar archivo</span>
+                            <span class="file-name" id="file-name">Ningún archivo seleccionado</span>
+                        </label>
+                    </div>
+                    
+                    <div class="preview-container" id="preview-container">
+                        <div class="preview-placeholder">
+                            <i class="fas fa-image"></i>
+                            <p>Vista previa del cartel aparecerá aquí</p>
+                        </div>
+                        <img id="preview-image" class="preview-image" style="display: none;">
+                        <iframe id="preview-pdf" class="preview-pdf" style="display: none;"></iframe>
+                    </div>
+                    
+                    <button id="btn-upload" class="btn-submit" disabled>
+                        <i class="fas fa-upload"></i> Subir Cartel
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="subircartel.js"></script>
+</body>
+</html>
