@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carteles de Proyectos - EXPOconfig</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <a href="profesor.html" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <img src="https://www.escom.ipn.mx/images/logoESCOM.png" alt="Logo ESCOM" class="navbar-logo">
+                <a href="index.html" class="navbar-link">EXPOconfig</a>
+            </div>
+            <ul class="navbar-menu">
+                <li class="navbar-item">
+                    <a href="evaluar.html" class="navbar-link">
+                        <i class="fas fa-project-diagram"></i> Calificar Proyectos
+                    </a>
+                </li>
+                <li class="navbar-item">
+                    <a href="criterios.html" class="navbar-link">
+                        <i class="fas fa-id-card"></i> Generar Criterios de Evaluación
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <section class="posters-section">
+            <h1><i class="fas fa-image"></i> Carteles de Proyectos</h1>
+            
+            <div class="filter-controls">
+                <div class="form-group">
+                    <label for="filter-project">Filtrar por proyecto:</label>
+                    <input type="text" id="filter-project" placeholder="Buscar proyecto...">
+                </div>
+                <div class="form-group">
+                    <label for="filter-student">Filtrar por alumno:</label>
+                    <input type="text" id="filter-student" placeholder="Buscar alumno...">
+                </div>
+            </div>
+            
+            <div class="posters-grid" id="posters-grid">
+                <!-- Carteles se cargarán dinámicamente aquí -->
+                <div class="poster-card">
+                    <div class="poster-header">
+                        <h3>Sistema de Gestión Escolar</h3>
+                        <p>Juan Pérez García - 2020630123</p>
+                    </div>
+                    <div class="poster-preview">
+                        <img src="https://via.placeholder.com/400x600?text=Ejemplo+de+Cartel" alt="Cartel del proyecto">
+                    </div>
+                    <div class="poster-actions">
+                        <button class="btn-view"><i class="fas fa-expand"></i> Ampliar</button>
+                        <button class="btn-download"><i class="fas fa-download"></i> Descargar</button>
+                        <button class="btn-print"><i class="fas fa-print"></i> Imprimir</button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Modal para vista ampliada -->
+            <div id="poster-modal" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 id="modal-title">Sistema de Gestión Escolar</h3>
+                        <span class="close-modal">&times;</span>
+                    </div>
+                    <div class="modal-body">
+                        <div class="poster-info">
+                            <p><strong>Alumno:</strong> <span id="modal-student">Juan Pérez García</span></p>
+                            <p><strong>Boleta:</strong> <span id="modal-boleta">2020630123</span></p>
+                        </div>
+                        <div class="poster-fullview">
+                            <img id="modal-poster-image" src="" alt="Cartel completo">
+                        </div>
+                        <div class="modal-actions">
+                            <button class="btn-download"><i class="fas fa-download"></i> Descargar</button>
+                            <button class="btn-print"><i class="fas fa-print"></i> Imprimir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="ver-carteles.js"></script>
+</body>
+</html>
