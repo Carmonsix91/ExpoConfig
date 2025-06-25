@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Constancias - ESCOM</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <a href="alumno.html" class="back-arrow">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+    <div class="container">
+        <header>
+            <div class="logos">
+                <div class="logo-escom">
+                    <img src="https://www.escom.ipn.mx/images/conocenos/escudoESCOM.png" alt="Logo ESCOM">
+                </div>
+                <div class="titulo">
+                    <h1>Generador de Constancias</h1>
+                    <h2>Participación y Justificantes</h2>
+                </div>
+                <div class="logo-ipn">
+                    <img src="https://i.pinimg.com/originals/22/42/18/22421831a43187e599cf0629662935e7.png" alt="Logo IPN">
+                </div>
+            </div>
+            <p>Complete los datos para generar su documento</p>
+        </header>
+
+        <form id="constanciaForm">
+            <div class="form-group">
+                <label for="tipoDocumento">Tipo de documento:</label>
+                <select id="tipoDocumento" name="tipoDocumento" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="constancia">Constancia de Participación</option>
+                    <option value="justificante">Justificante de Ausencia</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="nombre">Nombre completo:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="matricula">correo:</label>
+                <input type="text" id="matricula" name="matricula" required>
+            </div>
+
+            <div class="form-group">
+                <label for="carrera">Carrera:</label>
+                <select id="carrera" name="carrera" required>
+                    <option value="">Seleccione una carrera</option>
+                    <option value="Ing. en Computación">Ingeniería en Computación</option>
+                    <option value="Ing. en Sistemas">Ingeniería en Sistemas Computacionales</option>
+                    <option value="Lic. en Informática">Licenciatura en Informática</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="eventoGroup">
+                <label for="evento">Evento/Actividad:</label>
+                <input type="text" id="evento" name="evento" placeholder="Nombre del evento o actividad">
+            </div>
+
+            <div class="form-group" id="fechaEventoGroup">
+                <label for="fechaEvento">Fecha del evento:</label>
+                <input type="date" id="fechaEvento" name="fechaEvento">
+            </div>
+
+            <div class="form-group" id="motivoGroup" style="display: none;">
+                <label for="motivo">Motivo de ausencia:</label>
+                <textarea id="motivo" name="motivo" rows="3" placeholder="Describa el motivo de su ausencia"></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-generar">Generar Documento</button>
+            </div>
+        </form>
+
+        <div id="documentoPreview" class="documento-container" style="display: none;">
+            <div class="documento" id="documentoToPrint">
+                <div class="documento-header">
+                    <div class="logos-documento">
+                        <img src="https://www.escom.ipn.mx/images/conocenos/escudoESCOM.png" alt="ESCOM" class="logo-documento">
+                        <div class="institucion">
+                            <h3>Instituto Politécnico Nacional</h3>
+                            <h4>Escuela Superior de Cómputo</h4>
+                        </div>
+                        <img src="https://i.pinimg.com/originals/22/42/18/22421831a43187e599cf0629662935e7.png" alt="IPN" class="logo-documento">
+                    </div>
+                    <h2 id="tituloDocumento"></h2>
+                </div>
+                
+                <div class="documento-body">
+                    <p id="contenidoDocumento"></p>
+                    
+                    <div class="firma">
+                        <div class="linea-firma"></div>
+                        <p>M. en C.  IVÁN GIOVANNI MOSSO GARCIA</p>
+                        <p>Director de la ESCOM</p>
+                    </div>
+                </div>
+                
+                <div class="documento-footer">
+                    <p>Av. Juan de Dios Bátiz s/n esquina Miguel Othón de Mendizábal, Col. Lindavista, Demarcación Territorial Gustavo A. Madero, C.P. 07738, Ciudad de México</p>
+                    <p id="folioDocumento"></p>
+                </div>
+            </div>
+            
+            <div class="actions">
+                <button id="btnImprimir" class="btn-imprimir">Imprimir Documento</button>
+                <button id="btnNuevoDocumento" class="btn-nuevo">Generar Otro Documento</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="constancias.js"></script>
+</body>
+</html>
