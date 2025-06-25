@@ -1,0 +1,219 @@
+/* Estilos para la sección de criterios */
+.criteria-section {
+    background-color: var(--ipn-blanco);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.criteria-section h1 {
+    color: var(--ipn-guinda);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.criteria-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.criteria-controls .form-group {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.form-select, .form-input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--ipn-gris-medio);
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.form-textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid var(--ipn-gris-medio);
+    border-radius: 4px;
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 100px;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--ipn-gris-medio);
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--ipn-guinda);
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.criteria-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.criteria-card {
+    background-color: var(--ipn-gris-claro);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.criteria-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--ipn-guinda);
+    color: white;
+}
+
+.criteria-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.criteria-weight {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.criteria-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-edit, .btn-delete {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.btn-delete:hover {
+    background-color: rgba(255, 0, 0, 0.3);
+}
+
+.criteria-body {
+    padding: 1.5rem;
+}
+
+.criteria-body p {
+    margin: 0;
+    color: var(--ipn-gris-oscuro);
+}
+
+.criteria-summary {
+    padding: 1rem;
+    background-color: var(--ipn-gris-claro);
+    border-radius: 8px;
+    text-align: right;
+    margin-top: 1rem;
+}
+
+.criteria-summary .warning {
+    color: #d32f2f;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: var(--ipn-blanco);
+    margin: 5% auto;
+    padding: 0;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    padding: 1.5rem;
+    background-color: var(--ipn-guinda);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h3 {
+    margin: 0;
+}
+
+.close-modal {
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close-modal:hover {
+    color: var(--ipn-gris-claro);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    padding: 1rem 1.5rem;
+    background-color: var(--ipn-gris-claro);
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .criteria-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .modal-content {
+        margin: 10% auto;
+        width: 95%;
+    }
+}
